@@ -2,6 +2,6 @@
 *.iml
 .idea
 
-mx-api/src/main/resources/application-prd.properties
-mx-api/src/main/resources/application-dev.properties
-mx-api/src/main/resources/application.properties
+mx-webapi/src/main/resources/application-prd.yml
+mx-webapi/src/main/resources/application-dev.yml
+mx-webapi/src/main/resources/application.yml

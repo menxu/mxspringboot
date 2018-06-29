@@ -9,6 +9,7 @@ druid:
   max-active: 20
   test-on-borrow: false
   validation-query: select 1
+
 #redis
 jedis:
   pool:

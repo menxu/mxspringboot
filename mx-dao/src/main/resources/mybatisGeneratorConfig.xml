@@ -9,7 +9,7 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="org.postgresql.Driver"
-                        connectionURL="jdbc:postgresql://101.200.207.201:5432/qwb_pro"
+                        connectionURL="jdbc:postgresql://x.x.x.x:5432/qwb_pro"
                         userId="qwb" password="qwb12345678">
         </jdbcConnection>
 
