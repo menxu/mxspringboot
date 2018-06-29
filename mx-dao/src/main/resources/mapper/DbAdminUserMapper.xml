@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mx.dao.mapper.DbAdminUserMapper">
+  <resultMap id="BaseResultMap" type="com.mx.model.DbAdminUser">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="encrypted_password" jdbcType="VARCHAR" property="encryptedPassword" />
+    <result column="reset_password_token" jdbcType="VARCHAR" property="resetPasswordToken" />
+    <result column="reset_password_sent_at" jdbcType="TIMESTAMP" property="resetPasswordSentAt" />
+    <result column="remember_created_at" jdbcType="TIMESTAMP" property="rememberCreatedAt" />
+    <result column="sign_in_count" jdbcType="INTEGER" property="signInCount" />
+    <result column="current_sign_in_at" jdbcType="TIMESTAMP" property="currentSignInAt" />
+    <result column="last_sign_in_at" jdbcType="TIMESTAMP" property="lastSignInAt" />
+    <result column="current_sign_in_ip" jdbcType="VARCHAR" property="currentSignInIp" />
+    <result column="last_sign_in_ip" jdbcType="VARCHAR" property="lastSignInIp" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="locale" jdbcType="SMALLINT" property="locale" />
+    <result column="fullname" jdbcType="VARCHAR" property="fullname" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="is_supper" jdbcType="BIT" property="isSupper" />
+    <result column="ban" jdbcType="BIT" property="ban" />
+    <result column="authentication_token" jdbcType="VARCHAR" property="authenticationToken" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, email, encrypted_password, reset_password_token, reset_password_sent_at, remember_created_at, 
+    sign_in_count, current_sign_in_at, last_sign_in_at, current_sign_in_ip, last_sign_in_ip, 
+    created_at, updated_at, locale, fullname, mobile, is_supper, ban, authentication_token
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from admin_users
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" parameterType="com.mx.model.DbAdminUserSearch" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from admin_users WHERE 1=1
+    <if test="email != null">
+      AND email = #{email}
+    </if>
+    <if test="mobile != null">
+      AND mobile = #{mobile}
+    </if>
+    <if test="name != null">
+      AND fullname = #{name}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from admin_users
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mx.model.DbAdminUser">
+    insert into admin_users (id, email, encrypted_password, 
+      reset_password_token, reset_password_sent_at, 
+      remember_created_at, sign_in_count, current_sign_in_at, 
+      last_sign_in_at, current_sign_in_ip, last_sign_in_ip, 
+      created_at, updated_at, locale, 
+      fullname, mobile, is_supper, 
+      ban, authentication_token)
+    values (#{id,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{encryptedPassword,jdbcType=VARCHAR}, 
+      #{resetPasswordToken,jdbcType=VARCHAR}, #{resetPasswordSentAt,jdbcType=TIMESTAMP}, 
+      #{rememberCreatedAt,jdbcType=TIMESTAMP}, #{signInCount,jdbcType=INTEGER}, #{currentSignInAt,jdbcType=TIMESTAMP}, 
+      #{lastSignInAt,jdbcType=TIMESTAMP}, #{currentSignInIp,jdbcType=VARCHAR}, #{lastSignInIp,jdbcType=VARCHAR}, 
+      #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, #{locale,jdbcType=SMALLINT}, 
+      #{fullname,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{isSupper,jdbcType=BIT}, 
+      #{ban,jdbcType=BIT}, #{authenticationToken,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mx.model.DbAdminUser">
+    insert into admin_users
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="encryptedPassword != null">
+        encrypted_password,
+      </if>
+      <if test="resetPasswordToken != null">
+        reset_password_token,
+      </if>
+      <if test="resetPasswordSentAt != null">
+        reset_password_sent_at,
+      </if>
+      <if test="rememberCreatedAt != null">
+        remember_created_at,
+      </if>
+      <if test="signInCount != null">
+        sign_in_count,
+      </if>
+      <if test="currentSignInAt != null">
+        current_sign_in_at,
+      </if>
+      <if test="lastSignInAt != null">
+        last_sign_in_at,
+      </if>
+      <if test="currentSignInIp != null">
+        current_sign_in_ip,
+      </if>
+      <if test="lastSignInIp != null">
+        last_sign_in_ip,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="locale != null">
+        locale,
+      </if>
+      <if test="fullname != null">
+        fullname,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="isSupper != null">
+        is_supper,
+      </if>
+      <if test="ban != null">
+        ban,
+      </if>
+      <if test="authenticationToken != null">
+        authentication_token,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="encryptedPassword != null">
+        #{encryptedPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="resetPasswordToken != null">
+        #{resetPasswordToken,jdbcType=VARCHAR},
+      </if>
+      <if test="resetPasswordSentAt != null">
+        #{resetPasswordSentAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rememberCreatedAt != null">
+        #{rememberCreatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signInCount != null">
+        #{signInCount,jdbcType=INTEGER},
+      </if>
+      <if test="currentSignInAt != null">
+        #{currentSignInAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastSignInAt != null">
+        #{lastSignInAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="currentSignInIp != null">
+        #{currentSignInIp,jdbcType=VARCHAR},
+      </if>
+      <if test="lastSignInIp != null">
+        #{lastSignInIp,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="locale != null">
+        #{locale,jdbcType=SMALLINT},
+      </if>
+      <if test="fullname != null">
+        #{fullname,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="isSupper != null">
+        #{isSupper,jdbcType=BIT},
+      </if>
+      <if test="ban != null">
+        #{ban,jdbcType=BIT},
+      </if>
+      <if test="authenticationToken != null">
+        #{authenticationToken,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mx.model.DbAdminUser">
+    update admin_users
+    <set>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="encryptedPassword != null">
+        encrypted_password = #{encryptedPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="resetPasswordToken != null">
+        reset_password_token = #{resetPasswordToken,jdbcType=VARCHAR},
+      </if>
+      <if test="resetPasswordSentAt != null">
+        reset_password_sent_at = #{resetPasswordSentAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rememberCreatedAt != null">
+        remember_created_at = #{rememberCreatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signInCount != null">
+        sign_in_count = #{signInCount,jdbcType=INTEGER},
+      </if>
+      <if test="currentSignInAt != null">
+        current_sign_in_at = #{currentSignInAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastSignInAt != null">
+        last_sign_in_at = #{lastSignInAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="currentSignInIp != null">
+        current_sign_in_ip = #{currentSignInIp,jdbcType=VARCHAR},
+      </if>
+      <if test="lastSignInIp != null">
+        last_sign_in_ip = #{lastSignInIp,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="locale != null">
+        locale = #{locale,jdbcType=SMALLINT},
+      </if>
+      <if test="fullname != null">
+        fullname = #{fullname,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="isSupper != null">
+        is_supper = #{isSupper,jdbcType=BIT},
+      </if>
+      <if test="ban != null">
+        ban = #{ban,jdbcType=BIT},
+      </if>
+      <if test="authenticationToken != null">
+        authentication_token = #{authenticationToken,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mx.model.DbAdminUser">
+    update admin_users
+    set email = #{email,jdbcType=VARCHAR},
+      encrypted_password = #{encryptedPassword,jdbcType=VARCHAR},
+      reset_password_token = #{resetPasswordToken,jdbcType=VARCHAR},
+      reset_password_sent_at = #{resetPasswordSentAt,jdbcType=TIMESTAMP},
+      remember_created_at = #{rememberCreatedAt,jdbcType=TIMESTAMP},
+      sign_in_count = #{signInCount,jdbcType=INTEGER},
+      current_sign_in_at = #{currentSignInAt,jdbcType=TIMESTAMP},
+      last_sign_in_at = #{lastSignInAt,jdbcType=TIMESTAMP},
+      current_sign_in_ip = #{currentSignInIp,jdbcType=VARCHAR},
+      last_sign_in_ip = #{lastSignInIp,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      locale = #{locale,jdbcType=SMALLINT},
+      fullname = #{fullname,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      is_supper = #{isSupper,jdbcType=BIT},
+      ban = #{ban,jdbcType=BIT},
+      authentication_token = #{authenticationToken,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

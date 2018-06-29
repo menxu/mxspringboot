@@ -1,0 +1,21 @@
+# druid链接池 #
+druid:
+  url: jdbc:postgresql://x.x.x.x/qwb_pro?allowMultiQueries=true
+  driver-class: org.postgresql.Driver
+  username: xx
+  password: xxxx
+  initial-size: 1
+  min-idle: 1
+  max-active: 20
+  test-on-borrow: false
+  validation-query: select 1
+#redis
+jedis:
+  pool:
+    host: localhost
+    port: 6379
+    password: 9a43fc0908a6cb0836a57ffcAKJBB
+    config:
+      maxTotal: 100
+      maxIdle: 10
+      maxWaitMillis: 100000

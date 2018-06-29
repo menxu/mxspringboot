@@ -1,0 +1,7 @@
+*/target
+*.iml
+.idea
+
+mx-api/src/main/resources/application-prd.properties
+mx-api/src/main/resources/application-dev.properties
+mx-api/src/main/resources/application.properties
